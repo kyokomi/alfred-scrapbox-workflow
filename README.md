@@ -1,1 +1,2 @@
-# alfred-scraobox
+alfred-scrapbox-workflow
+==============================
