@@ -82,10 +82,7 @@ func (s *searchCommand) pageListWithCache(ctx context.Context) (scrapbox.PageLis
 
 	client := scrapbox.NewClient(s.getToken())
 
-	offset := uint(0)
-	limit := uint(1000) // TODO: 次ページなくなるまで取得?
-
-	res, err := client.Page.List(ctx, s.getProjectName(), offset, limit)
+	res, err := client.Page.ListAll(ctx, s.getProjectName())
 	if err != nil {
 		s.wf.FatalError(err)
 	}
