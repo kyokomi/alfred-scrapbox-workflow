@@ -235,9 +235,9 @@
 	<key>variables</key>
 	<dict>
 		<key>projectName</key>
-		<string>kyokomi</string>
+		<string></string>
 		<key>token</key>
-		<string>s%3An83_lyXtCRTqVjwYyLEEm5zbyb-BqiTo.JmOl1LaEMY5JOWvAk4QDhI4pqxfrX3OjC8QbG1XeFpQ</string>
+		<string></string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
