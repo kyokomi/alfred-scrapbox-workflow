@@ -39,6 +39,8 @@ jobs:
 
       - name: Check out code into the Go module directory
         uses: actions/checkout@v1
+
+      - name: Export Script Parameter
         run: |
           echo "::set-env name=VERSION::.github/step_param_from_env.sh"
         shell: bash
