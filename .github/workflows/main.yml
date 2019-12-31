@@ -51,6 +51,9 @@ jobs:
           name: build_binary
           path: ./resources/app
 
+      - name: check resources
+        run: ls -al ./resources
+
       - name: Install alfreder
         run: GO111MODULE=off GOBIN=$(pwd)/bin go get -u github.com/kyokomi/alfreder
 
