@@ -21,9 +21,7 @@ jobs:
           go get -v -t -d ./...
 
       - name: Build
-        run: |
-          GOOS=darwin GOARCH=amd64 go build -o alfred-scrapbox-workflow -v ./cmd/alfred-scrapbox-workflow
-          chmod 755 ./alfred-scrapbox-workflow
+        run: GOOS=darwin GOARCH=amd64 go build -o alfred-scrapbox-workflow -v ./cmd/alfred-scrapbox-workflow
 
       - name: Upload binary result for build
         uses: actions/upload-artifact@v1
@@ -54,7 +52,9 @@ jobs:
           path: ./resources
 
       - name: check resources
-        run: ls -al ./resources
+        run: |
+          chmod 755 ./resources/alfred-scrapbox-workflow
+          ls -al ./resources
 
       - name: Install alfreder
         run: GO111MODULE=off GOBIN=$(pwd)/bin go get -u github.com/kyokomi/alfreder
