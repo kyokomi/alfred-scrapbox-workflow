@@ -4,7 +4,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
 
       - name: Set up Go 1.13
@@ -28,3 +28,22 @@ jobs:
         with:
           name: build_binary
           path: app
+
+  deploy:
+    name: Deploy
+    runs-on: [ubuntu-latest]
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - build
+    steps:
+
+      - name: Download binary result for build
+        uses: actions/download-artifact@v1
+        with:
+          name: build_binary
+
+      - name: Install alfreder
+        run: go get -u github.com/kyokomi/alfreder
+
+      - name: packaging alfredworkflow
+        run: alfreder -i resources/info.plist
