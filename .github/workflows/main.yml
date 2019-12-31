@@ -32,7 +32,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: [ubuntu-latest]
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/feature/cicd_test'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/feature/cdci_test '
     needs:
       - build
     steps:
@@ -41,9 +41,32 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: build_binary
+          path: ./resources/app
 
       - name: Install alfreder
         run: go get -u github.com/kyokomi/alfreder
 
       - name: packaging alfredworkflow
         run: alfreder -i resources/info.plist
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }} # TODO: あとで
+          release_name: Release ${{ github.ref }} # TODO: あとで
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./scrapbox.alfredworkflow.zip
+          asset_name: scrapbox.alfredworkflow.zip
+          asset_content_type: application/zip
