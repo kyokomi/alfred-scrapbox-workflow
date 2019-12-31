@@ -26,8 +26,8 @@ jobs:
       - name: Upload binary result for build
         uses: actions/upload-artifact@v1
         with:
-          name: build_binary
-          path: app
+          name: alfred-scrapbox-workflow
+          path: alfred-scrapbox-workflow
 
   deploy:
     name: Deploy
@@ -48,8 +48,8 @@ jobs:
       - name: Download binary result for build
         uses: actions/download-artifact@v1
         with:
-          name: build_binary
-          path: ./resources/app
+          name: alfred-scrapbox-workflow
+          path: ./resources
 
       - name: check resources
         run: ls -al ./resources

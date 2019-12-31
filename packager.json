@@ -11,6 +11,6 @@
   },
   "resources": [
     "resources/icon.png",
-    "resources/app"
+    "resources/alfred-scrapbox-workflow"
   ]
 }
