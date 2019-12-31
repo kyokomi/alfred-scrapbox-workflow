@@ -52,8 +52,10 @@ jobs:
       - name: packaging alfredworkflow
         run: bin/alfreder -i resources/info.plist
 
-      - name: set version
-        run: export VERSION=`cat ./packager.json | jq .replaceInfo.version`
+      - name: set_version
+        run: echo VERSION=`cat ./packager.json | jq .replaceInfo.version`
+        outputs:
+          version: `cat ./packager.json | jq .replaceInfo.version`
 
       - name: Create Release
         id: create_release
@@ -61,8 +63,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: ${{ env.VERSION }}
+          tag_name: ${{ steps.set_version.outputs.version }}
+          release_name: ${{ steps.set_version.outputs.version }}
           draft: false
           prerelease: false
 
