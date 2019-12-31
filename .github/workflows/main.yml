@@ -21,7 +21,9 @@ jobs:
           go get -v -t -d ./...
 
       - name: Build
-        run: GOOS=darwin GOARCH=amd64 go build -o alfred-scrapbox-workflow -v ./cmd/alfred-scrapbox-workflow
+        run: |
+          GOOS=darwin GOARCH=amd64 go build -o alfred-scrapbox-workflow -v ./cmd/alfred-scrapbox-workflow
+          chmod 755 ./alfred-scrapbox-workflow
 
       - name: Upload binary result for build
         uses: actions/upload-artifact@v1
