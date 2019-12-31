@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+scrapbox.alfredworkflow
 
 # Test binary, built with `go test -c`
 *.test
