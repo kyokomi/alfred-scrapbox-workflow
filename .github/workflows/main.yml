@@ -43,11 +43,14 @@ jobs:
           name: build_binary
           path: ./resources/app
 
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
+
       - name: Install alfreder
-        run: go get -u github.com/kyokomi/alfreder
+        run: GO111MODULE=off GOBIN=$(pwd)/bin go get -u github.com/kyokomi/alfreder
 
       - name: packaging alfredworkflow
-        run: alfreder -i resources/info.plist
+        run: bin/alfreder -i resources/info.plist
 
       - name: Create Release
         id: create_release
