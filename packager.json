@@ -1,0 +1,16 @@
+{
+  "exportFile": "scrapbox.alfredworkflow",
+  "readme": "CHANGELOG.md",
+  "replaceInfo": {
+    "bundleid": "dev.kyokomi.alfred-scrapbox-workflow",
+    "createdby": "kyokomi",
+    "webaddress": "https://github.com/kyokomi/alfred-scrapbox-workflow",
+    "description": "workflow of scrapbox",
+    "version": "0.0.2",
+    "name": "scrapbox"
+  },
+  "resources": [
+    "resources/icon.png",
+    "resources/alfred-scrapbox-workflow"
+  ]
+}
