@@ -32,7 +32,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: [ubuntu-latest]
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/feature/cicd_test'
     needs:
       - build
     steps:
