@@ -1,0 +1,26 @@
+name: Go
+on:
+  push:
+    branchs:
+      - master
+
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: [ubuntu-latest]
+    needs:
+      - build
+    steps:
+
+      - name: Download binary result for build
+        uses: actions/download-artifact@v1
+        with:
+          name: build_binary
+
+      - name: Install alfreder
+        run: go get -u github.com/kyokomi/alfreder
+
+      - name: packaging alfredworkflow
+        run: alfreder -i resources/info.plist
+
