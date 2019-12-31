@@ -87,6 +87,10 @@ func (s *searchCommand) pageListWithCache(ctx context.Context) (scrapbox.PageLis
 		s.wf.FatalError(err)
 	}
 
+	if len(res.Pages) == 0 {
+		return scrapbox.PageListResponse{}, nil
+	}
+
 	// cacheのファイル名
 	if err := s.wf.Cache.StoreJSON(cacheKeyPages, &res); err != nil {
 		s.wf.FatalError(err)
