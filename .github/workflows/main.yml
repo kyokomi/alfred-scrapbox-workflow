@@ -37,14 +37,14 @@ jobs:
       - build
     steps:
 
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
+
       - name: Download binary result for build
         uses: actions/download-artifact@v1
         with:
           name: build_binary
           path: ./resources/app
-
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v1
 
       - name: Install alfreder
         run: GO111MODULE=off GOBIN=$(pwd)/bin go get -u github.com/kyokomi/alfreder
