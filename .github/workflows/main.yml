@@ -42,7 +42,7 @@ jobs:
 
       - name: Export Version Parameter
         run: |
-          echo "::set-env name=VERSION::$(cat ./packager.json | jq .replaceInfo.version)"
+          echo "::set-env name=VERSION::$(cat ./packager.json | jq -r '.replaceInfo.version')"
         shell: bash
 
       - name: Download binary result for build
